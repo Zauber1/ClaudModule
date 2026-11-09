@@ -1,0 +1,41 @@
+users:
+  - default
+  - name: vorname
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtE3n7fHBKIJjO7mayfL7pH35HO3Otma2PSEmGhVJfhvi9VG1Xw5qGX496/kRvwcozchDVWAQAk1AmbyKEsZ3facaa01T7YuOe0H/0xJ5uELnfaHUYdjf/jvqkdP43BIJ5knpvbLY1J1aUzSCDVkBROVnVyrnYdGzhMR0zBMaiwxamxVWVeMbIuwulbW8HAf73aX3W6Onue0UnDvoZiXPgJ5nfviI9P/g2zQOv17cR/J/9y7C3RMr6wTtEh94xPcSJG0E9l5lpGBiid1BesZKLM3/HiGRWMW0EujLMppr0pgkQER8Bv4e+a9ZLDShSnU8gk44BiaIJPyFsA11KtNJ9
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0WGP1EZykEtv5YGC9nMiPFW3U3DmZNzKFO5nEu6uozEHh4jLZzPNHSrfFTuQ2GnRDSt+XbOtTLdcj26+iPNiFoFha42aCIzYjt6V8Z+SQ9pzF4jPPzxwXfDdkEWylgoNnZ+4MG1lNFqa8aO7F62tX0Yj5khjC0Bs7Mb2cHLx1XZaxJV6qSaulDuBbLYe8QUZXkMc7wmob3PM0kflfolR3LE7LResIHWa4j4FL6r5cQmFlDU2BDPpKMFMGUfRSFiUtaWBNXFOWHQBC2+uKmuMPYP4vJC9sBgqMvPN/X2KyemqdMvdKXnCfrzadHuSSJYEzD64Cve5Zl9yVvY4AqyBD yves.nussle@lehrperson-m346
+
+package_update: true
+
+packages:
+  - neovim
+  - fastfetch
+  - tree
+  - curl
+
+write_files:
+  - path: /home/ubuntu/kn01-info.txt
+    owner: ubuntu:ubuntu
+    permissions: "0644"
+    content: |
+      guten morgen dies ist eine sehr tolle cloud instanz
+      die von mir gestarted wurde 
+      hier bewertungen
+
+      loris : 10/10 beste cloud ever
+      lorin : 100/10 ich konnte noch nie eine so gute cloud aufsetzen
+      diego : nvim/10 ich finde es toll das nvim vorinstalliert wird
+
+runcmd:
+  - [
+      bash,
+      -c,
+      'echo "cloud-init runcmd executed successfully at $(date)" > /home/ubuntu/runcmd-proof.txt',
+      'echo "Mandelbrot"',
+    ]
+  - [chown, ubuntu:ubuntu, /home/ubuntu/runcmd-proof.txt]

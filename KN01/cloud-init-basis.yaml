@@ -1,0 +1,36 @@
+#cloud-config
+
+# Create the default ubuntu user and an additional user.
+users:
+  - default
+  - name: vorname # Replace "vorname" with your own first name (lowercase).
+    sudo: ALL=(ALL) NOPASSWD:ALL # Grant passwordless sudo permissions.
+    shell: /bin/bash # Use Bash as the user's login shell.
+
+# Update the package list before installing packages.
+package_update: true
+
+# Install the packages required for this VM.
+packages:
+  - neofetch # Display system information in the terminal.
+  - tree # Display directory structures.
+  - curl # Additional package for this assignment.
+
+# Create a personal information file.
+write_files:
+  - path: /home/ubuntu/kn01-info.txt # Location of the file to create.
+    owner: ubuntu:ubuntu # Set the file owner and group.
+    permissions: "0644" # Allow the owner to write and everyone to read.
+    content: |
+      This file was created automatically by cloud-init.
+      KN01 - Virtualisierung und automatisierte VM.
+      The VM was configured using cloud-init.
+
+# Run commands after the packages and files have been configured.
+runcmd:
+  - [
+      bash,
+      -c,
+      'echo "cloud-init runcmd executed successfully at $(date)" > /home/ubuntu/runcmd-proof.txt',
+    ] # Create a proof file containing the execution time.
+  - [chown, ubuntu:ubuntu, /home/ubuntu/runcmd-proof.txt] # Allow ubuntu to access and edit the proof file.
