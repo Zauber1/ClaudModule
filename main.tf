@@ -12,7 +12,6 @@ provider "aws" {
 }
 
 resource "aws_security_group" "kn03_sg" {
-  name        = "KN03-SG"
   description = "Security Group for KN03"
 
   ingress {
