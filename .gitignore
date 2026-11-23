@@ -1,0 +1,5 @@
+# Lokale OpenTofu / Terraform Ordner und Dateien
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
