@@ -27,3 +27,7 @@ after i changed my .tf file up with help of gpt so that it uses my yml file from
 Bei einer änder ung im main.tf wurde es wie gewohnt angezeitg
 bei einer veränderung im zb dem cloud init hat es mir überaschender weise die veränderung im file selber angezeigt.
 ![img](/KN03/img/change1.png)
+
+### Destroy
+
+i used the `tofu destroy` command to destroy evrything after this i used the comand `tofu apply` again and the workspace was back here in like notime the difference to before was crazy i din't need to do anything an d bam evry thing was back here.
